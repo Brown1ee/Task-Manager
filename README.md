@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started with Task Manager App
 
 ![image](https://user-images.githubusercontent.com/42550136/111069781-b38f0480-84df-11eb-8b71-975245342bed.png)
 
