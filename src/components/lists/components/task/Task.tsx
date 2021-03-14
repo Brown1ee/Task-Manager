@@ -1,9 +1,10 @@
 import React from "react";
 import * as s from "./Task.styled";
 import { Draggable } from "react-beautiful-dnd";
+import { TaskType } from "../list";
 
 interface Props {
-  task: any;
+  task: TaskType;
   index: number;
 }
 
