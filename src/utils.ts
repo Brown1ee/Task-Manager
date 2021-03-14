@@ -1,24 +1,43 @@
+import { ItitialData } from "./App";
+import { DraggableLocation } from "react-beautiful-dnd";
+
 interface IhandleMovingFromOneListToAnother {
-  setState: () => void;
+  setState: (state: ItitialData) => void;
+  start: {
+    id: string;
+    title: string;
+    taskIds: string[];
+  };
+  source: DraggableLocation;
+  finish: {
+    id: string;
+    title: string;
+    taskIds: string[];
+  };
+  destination: DraggableLocation;
+  draggableId: string;
+  state: ItitialData;
 }
 
-export const handleMovingFromOneListToAnother = (
-  setState: any,
-  start: any,
-  source: any,
-  finish: any,
-  destination: any,
-  draggableId: any,
-  state: any
-) => {
-  const startTaskIds = Array.from(start.taskIds);
+export const handleMovingFromOneListToAnother: (
+  props: IhandleMovingFromOneListToAnother
+) => void = ({
+  setState,
+  start,
+  source,
+  finish,
+  destination,
+  draggableId,
+  state,
+}) => {
+  const startTaskIds = [...start.taskIds];
   startTaskIds.splice(source.index, 1);
   const newStart = {
     ...start,
     taskIds: startTaskIds,
   };
 
-  const finishTaskIds = Array.from(finish.taskIds);
+  const finishTaskIds = [...finish.taskIds];
   finishTaskIds.splice(destination.index, 0, draggableId);
   const newFinish = {
     ...finish,
@@ -36,15 +55,10 @@ export const handleMovingFromOneListToAnother = (
   setState(newState);
 };
 
-export const handleMovingTasksInOneList = (
-  start: any,
-  source: any,
-  destination: any,
-  draggableId: any,
-  state: any,
-  setState: any
-) => {
-  const newTaskIds = Array.from(start.taskIds);
+export const handleMovingTasksInOneList: (
+  props: IhandleMovingFromOneListToAnother
+) => void = ({ start, source, destination, draggableId, state, setState }) => {
+  const newTaskIds = [...start.taskIds];
   newTaskIds.splice(source.index, 1);
   newTaskIds.splice(destination.index, 0, draggableId);
 

@@ -52,25 +52,26 @@ const App: React.FC<Props> = (props): React.ReactElement => {
     const finish = state.columns[destination.droppableId];
 
     if (start === finish) {
-      return handleMovingTasksInOneList(
+      return handleMovingTasksInOneList({
+        finish,
         start,
         source,
         destination,
         draggableId,
         state,
-        setState
-      );
+        setState,
+      });
     }
 
-    return handleMovingFromOneListToAnother(
+    return handleMovingFromOneListToAnother({
       setState,
       start,
       source,
       finish,
       destination,
       draggableId,
-      state
-    );
+      state,
+    });
   };
   return (
     <Container maxWidth="lg">
